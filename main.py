@@ -45,9 +45,9 @@ def epic_picture_downloader(token):
     pictures = response.json()[:10]
     for number, picture in enumerate(pictures):
         picture_date = datetime.strptime(picture['date'], '%Y-%m-%d %H:%M:%S')
-        picture_downloader(f'https://api.nasa.gov/EPIC/archive/natural/{picture_date.year}/{picture_date.month}/{picture_date.day}/png/{picture["image"]}.png?api_key={token}', f'images/epic{number}.png')
+        formated_picture_date = picture_date.strftime('%Y/%m/%d')
+        picture_downloader(f'https://api.nasa.gov/EPIC/archive/natural/{formated_picture_date}/png/{picture["image"]}.png?api_key={token}', f'images/epic{number}.png')
 
 if __name__ == '__main__':
     load_dotenv()
     nasa_token = os.getenv("NASA_TOKEN")
-    print(nasa_token)
