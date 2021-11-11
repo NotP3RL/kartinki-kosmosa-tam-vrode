@@ -1,6 +1,7 @@
 from datetime import datetime
 import os
 from urllib.parse import urlparse
+from pathlib import Path
 
 from dotenv import load_dotenv
 import requests
@@ -53,4 +54,5 @@ def epic_picture_downloader(token):
 
 if __name__ == '__main__':
     load_dotenv()
+    Path("images").mkdir(parents=True, exist_ok=True
     nasa_token = os.getenv("NASA_TOKEN")
