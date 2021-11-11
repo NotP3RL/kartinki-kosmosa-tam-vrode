@@ -19,7 +19,7 @@ def fetch_spacex_last_launch():
     response.raise_for_status()
     pictures = response.json()['links']['flickr']['original']
     for number, picture in enumerate(pictures):
-        picture_downloader(picture, f'images/spacex{number}.jpg')
+        picture_downloader(picture, f'images/spacex/spacex{number}.jpg')
 
 
 def picture_extension(url):
@@ -37,7 +37,7 @@ def nasa_picture_downloader(count, token):
     response.raise_for_status()
     pictures = response.json()
     for number, picture in enumerate(pictures):
-        picture_downloader(picture['hdurl'], f'images/nasa_picture{number}.{picture_extension(picture["hdurl"])}')
+        picture_downloader(picture['hdurl'], f'images/nasa/nasa_picture{number}.{picture_extension(picture["hdurl"])}')
 
 
 def epic_picture_downloader(token):
@@ -50,9 +50,11 @@ def epic_picture_downloader(token):
     for number, picture in enumerate(pictures):
         picture_date = datetime.strptime(picture['date'], '%Y-%m-%d %H:%M:%S')
         formated_picture_date = picture_date.strftime('%Y/%m/%d')
-        picture_downloader(f'https://api.nasa.gov/EPIC/archive/natural/{formated_picture_date}/png/{picture["image"]}.png', f'images/epic{number}.png', epic_params)
+        picture_downloader(f'https://api.nasa.gov/EPIC/archive/natural/{formated_picture_date}/png/{picture["image"]}.png', f'images/epic/epic{number}.png', epic_params)
 
 if __name__ == '__main__':
     load_dotenv()
-    Path("images").mkdir(parents=True, exist_ok=True
+    Path("images/spacex").mkdir(parents=True, exist_ok=True)
+    Path("images/nasa").mkdir(parents=True, exist_ok=True)
+    Path("images/epic").mkdir(parents=True, exist_ok=True)
     nasa_token = os.getenv("NASA_TOKEN")
