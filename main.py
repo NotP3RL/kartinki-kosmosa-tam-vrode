@@ -5,7 +5,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 import requests
-
+import telegram
 
 def picture_downloader(url, path, params=''):
     response = requests.get(url, params)
@@ -58,3 +58,7 @@ if __name__ == '__main__':
     Path("images/nasa").mkdir(parents=True, exist_ok=True)
     Path("images/epic").mkdir(parents=True, exist_ok=True)
     nasa_token = os.getenv("NASA_TOKEN")
+    telegram_token = os.getenv("TELEGRAM_TOKEN")
+    telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")
+    bot = telegram.Bot(token=telegram_token)
+    bot.send_message(text='text', chat_id=telegram_chat_id)
