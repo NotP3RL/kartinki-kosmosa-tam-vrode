@@ -2,6 +2,7 @@ from datetime import datetime
 import os
 from urllib.parse import urlparse
 from pathlib import Path
+import random
 
 from dotenv import load_dotenv
 import requests
@@ -61,4 +62,11 @@ if __name__ == '__main__':
     telegram_token = os.getenv("TELEGRAM_TOKEN")
     telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")
     bot = telegram.Bot(token=telegram_token)
-    bot.send_message(text='text', chat_id=telegram_chat_id)
+    picture_folders = [
+    'spacex',
+    'nasa',
+    'epic'
+    ]
+    random_folder = f'images/{random.choice(picture_folders)}'
+    random_picture = random.choice(os.listdir(random_folder))
+    bot.send_photo(telegram_chat_id, photo=open(f'{random_folder}/{random_picture}', 'rb'))
