@@ -62,11 +62,7 @@ if __name__ == '__main__':
     telegram_token = os.getenv("TELEGRAM_TOKEN")
     telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")
     bot = telegram.Bot(token=telegram_token)
-    picture_folders = [
-    'spacex',
-    'nasa',
-    'epic'
-    ]
-    random_folder = f'images/{random.choice(picture_folders)}'
-    random_picture = random.choice(os.listdir(random_folder))
-    bot.send_photo(telegram_chat_id, photo=open(f'{random_folder}/{random_picture}', 'rb'))
+
+    random_folder_path = f'images/{random.choice(os.listdir("images"))}'
+    random_picture = random.choice(os.listdir(random_folder_path))
+    bot.send_photo(telegram_chat_id, photo=open(f'{random_folder_path}/{random_picture}', 'rb'))
