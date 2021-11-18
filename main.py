@@ -68,8 +68,10 @@ if __name__ == '__main__':
         fetch_spacex_last_launch()
         nasa_picture_downloader(5, nasa_token)
         epic_picture_downloader(nasa_token)
-        random_folder_path = f'images/{random.choice(os.listdir("images"))}'
-        random_picture = random.choice(os.listdir(random_folder_path))
-        telegram_bot.send_photo(telegram_chat_id, photo=open(f'{random_folder_path}/{random_picture}', 'rb'))
-        time.sleep(telegram_posting_delay)
-        
+        try:
+            random_folder_path = f'images/{random.choice(os.listdir("images"))}'
+            random_picture = random.choice(os.listdir(random_folder_path))
+            telegram_bot.send_photo(telegram_chat_id, photo=open(f'{random_folder_path}/{random_picture}', 'rb'))
+            time.sleep(telegram_posting_delay)
+        except IndexError:
+            pass
