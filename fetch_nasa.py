@@ -4,7 +4,7 @@ from tools import picture_downloader
 from tools import picture_extension
 
 
-def nasa_picture_downloader(count, token):
+def fetch_nasa_pictures(count, token):
     nasa_params = {
         'count': count,
         'api_key': token

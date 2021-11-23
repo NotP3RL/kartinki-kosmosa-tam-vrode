@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 import requests
 import telegram
 
-from fetch_spacex import fetch_spacex_last_launch
-from fetch_nasa import nasa_picture_downloader
-from fetch_epic import epic_picture_downloader
+from fetch_spacex import fetch_spacex_last_launch_pictures
+from fetch_nasa import fetch_nasa_pictures
+from fetch_epic import fetch_epic_pictures
 
 
 if __name__ == '__main__':
@@ -23,9 +23,9 @@ if __name__ == '__main__':
     telegram_posting_delay = os.getenv('TELEGRAM_POSTING_DELAY')
     telegram_bot = telegram.Bot(token=telegram_token)
     while True:
-        fetch_spacex_last_launch()
-        nasa_picture_downloader(5, nasa_token)
-        epic_picture_downloader(nasa_token)
+        fetch_spacex_last_launch_pictures()
+        fetch_nasa_pictures(5, nasa_token)
+        fetch_epic_pictures(nasa_token)
         try:
             random_folder_path = f'images/{random.choice(os.listdir("images"))}'
             random_picture = random.choice(os.listdir(random_folder_path))

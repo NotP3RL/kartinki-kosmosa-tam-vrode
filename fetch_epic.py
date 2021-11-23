@@ -5,7 +5,7 @@ import requests
 from tools import picture_downloader
 
 
-def epic_picture_downloader(token):
+def fetch_epic_pictures(token):
     response = requests.get(f'https://api.nasa.gov/EPIC/api/natural/images?api_key={token}')
     response.raise_for_status
     pictures = response.json()[:10]
