@@ -30,6 +30,6 @@ if __name__ == '__main__':
             random_folder_path = f'images/{random.choice(os.listdir("images"))}'
             random_picture = random.choice(os.listdir(random_folder_path))
             telegram_bot.send_photo(telegram_chat_id, photo=open(f'{random_folder_path}/{random_picture}', 'rb'))
-            time.sleep(telegram_posting_delay)
+            time.sleep(int(telegram_posting_delay))
         except IndexError:
             pass
