@@ -24,8 +24,8 @@ if __name__ == '__main__':
     telegram_bot = telegram.Bot(token=telegram_token)
     while True:
         fetch_spacex_last_launch_pictures()
-        fetch_nasa_pictures(5, nasa_token)
-        fetch_epic_pictures(nasa_token)
+        fetch_nasa_pictures(random.randint(30, 50), nasa_token)
+        fetch_epic_pictures(random.randint(5, 10), nasa_token)
         try:
             random_folder_path = f'images/{random.choice(os.listdir("images"))}'
             random_picture = random.choice(os.listdir(random_folder_path))
