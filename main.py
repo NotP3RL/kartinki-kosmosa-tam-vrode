@@ -14,9 +14,9 @@ from fetch_epic import fetch_epic_pictures
 
 if __name__ == '__main__':
     load_dotenv()
-    Path('images/spacex').mkdir(parents=True, exist_ok=True)
-    Path('images/nasa').mkdir(parents=True, exist_ok=True)
-    Path('images/epic').mkdir(parents=True, exist_ok=True)
+    folder_names = ['spacex', 'nasa', 'epic']
+    for folder_name in folder_names
+        Path(f'images/{folder_name}').mkdir(parents=True, exist_ok=True)
     nasa_token = os.getenv('NASA_TOKEN')
     telegram_token = os.getenv('TELEGRAM_TOKEN')
     telegram_chat_id = os.getenv('TELEGRAM_CHAT_ID')
