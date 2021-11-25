@@ -1,6 +1,6 @@
 import requests
 
-from tools import picture_downloader
+from tools import download_picture
 
 
 def fetch_spacex_last_launch_pictures():
@@ -8,4 +8,4 @@ def fetch_spacex_last_launch_pictures():
     response.raise_for_status()
     pictures = response.json()['links']['flickr']['original']
     for number, picture in enumerate(pictures):
-        picture_downloader(picture, f'images/spacex/spacex{number}.jpg')
+        download_picture(picture, f'images/spacex/spacex{number}.jpg')

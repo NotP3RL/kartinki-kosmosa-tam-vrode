@@ -2,7 +2,7 @@ from datetime import datetime
 
 import requests
 
-from tools import picture_downloader
+from tools import download_picture
 
 
 def fetch_epic_pictures(count, token):
@@ -15,4 +15,4 @@ def fetch_epic_pictures(count, token):
     for number, picture in enumerate(pictures):
         picture_date = datetime.strptime(picture['date'], '%Y-%m-%d %H:%M:%S')
         formated_picture_date = picture_date.strftime('%Y/%m/%d')
-        picture_downloader(f'https://api.nasa.gov/EPIC/archive/natural/{formated_picture_date}/png/{picture["image"]}.png', f'images/epic/epic{number}.png', epic_params)
+        download_picture(f'https://api.nasa.gov/EPIC/archive/natural/{formated_picture_date}/png/{picture["image"]}.png', f'images/epic/epic{number}.png', epic_params)
