@@ -1,5 +1,6 @@
 import os
 from urllib.parse import urlparse
+from urllib.parse import unquote
 
 import requests
 
@@ -13,4 +14,4 @@ def download_picture(url, path, params=''):
 
 def get_picture_extension(url):
     parsed_url = urlparse(url)
-    return os.path.splitext(parsed_url.path)[1]
+    return unquote(os.path.splitext(parsed_url.path)[1])
