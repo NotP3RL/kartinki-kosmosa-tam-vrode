@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 import requests
 import telegram
 
-from fetch_spacex import fetch_spacex_last_launch_pictures
+from fetch_spacex import fetch_spacex_pictures
 from fetch_nasa import fetch_nasa_pictures
 from fetch_epic import fetch_epic_pictures
 
@@ -23,7 +23,7 @@ if __name__ == '__main__':
     telegram_posting_delay = os.getenv('TELEGRAM_POSTING_DELAY')
     telegram_bot = telegram.Bot(token=telegram_token)
     while True:
-        fetch_spacex_last_launch_pictures()
+        fetch_spacex_pictures()
         fetch_nasa_pictures(random.randint(30, 50), nasa_token)
         fetch_epic_pictures(random.randint(5, 10), nasa_token)
         try:
