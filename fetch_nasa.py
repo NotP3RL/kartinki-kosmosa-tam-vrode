@@ -9,8 +9,14 @@ def fetch_nasa_pictures(count, token):
         'count': count,
         'api_key': token
     }
-    response = requests.get('https://api.nasa.gov/planetary/apod', params=nasa_params)
+    response = requests.get(
+        'https://api.nasa.gov/planetary/apod',
+        params=nasa_params
+    )
     response.raise_for_status()
     pictures = response.json()
     for number, picture in enumerate(pictures):
-        download_picture(picture['hdurl'], f'images/nasa/nasa{number}{get_picture_extension(picture["hdurl"])}')
+        download_picture(
+            picture['hdurl'],
+            f'images/nasa/nasa{number}{get_picture_extension(picture["hdurl"])}'
+        )
