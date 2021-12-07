@@ -16,7 +16,10 @@ def fetch_nasa_pictures(count, token):
     response.raise_for_status()
     pictures = response.json()
     for number, picture in enumerate(pictures):
-        download_picture(
-            picture['hdurl'],
-            f'images/nasa/nasa{number}{get_picture_extension(picture["hdurl"])}'
-        )
+        try:
+            download_picture(
+                picture['hdurl'],
+                f'images/nasa/nasa{number}{get_picture_extension(picture["hdurl"])}'
+            )
+        except KeyError:
+            pass
